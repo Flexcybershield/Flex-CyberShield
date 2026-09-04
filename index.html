@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FLEX CyberShield | Cybersecurity Awareness</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN SCREEN
+===================================================== -->
+
+<section
+    id="loginScreen"
+    class="auth-screen"
+>
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+            🛡️
+        </div>
+
+        <h1>
+            Cyber<span>Shield</span>
+        </h1>
+
+        <p class="auth-subtitle">
+            FLEX Cybersecurity Awareness Simulator
+        </p>
+
+
+        <form
+            id="loginForm"
+            onsubmit="handleLogin(event)"
+        >
+
+            <div class="input-group">
+
+                <label for="loginUsername">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="loginUsername"
+                    placeholder="Enter your username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+
+            <p
+                id="loginMessage"
+                class="auth-message"
+            ></p>
+
+
+            <button
+                type="submit"
+                class="primary-btn auth-btn"
+            >
+                🔐 Login
+            </button>
+
+        </form>
+
+
+        <p class="auth-switch">
+
+            Don't have an account?
+
+            <button
+                type="button"
+                onclick="showSignup()"
+            >
+                Create Account
+            </button>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SIGN UP SCREEN
+===================================================== -->
+
+<section
+    id="signupScreen"
+    class="auth-screen"
+    style="display:none;"
+>
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+            🛡️
+        </div>
+
+        <h1>
+            Create Your
+            <span>CyberShield</span>
+            Account
+        </h1>
+
+        <p class="auth-subtitle">
+            Start your cybersecurity journey
+        </p>
+
+
+        <form
+            id="signupForm"
+            onsubmit="handleSignup(event)"
+        >
+
+            <div class="input-group">
+
+                <label for="signupDisplayName">
+                    Display Name
+                </label>
+
+                <input
+                    type="text"
+                    id="signupDisplayName"
+                    placeholder="Your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="signupUsername">
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="signupUsername"
+                    placeholder="Choose a username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="signupPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Create a password"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label for="signupConfirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="signupConfirmPassword"
+                    placeholder="Confirm your password"
+                    required
+                >
+
+            </div>
+
+
+            <p
+                id="signupMessage"
+                class="auth-message"
+            ></p>
+
+
+            <button
+                type="submit"
+                class="primary-btn auth-btn"
+            >
+                🚀 Create Account
+            </button>
+
+        </form>
+
+
+        <p class="auth-switch">
+
+            Already have an account?
+
+            <button
+                type="button"
+                onclick="showLogin()"
+            >
+                Login
+            </button>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MAIN APPLICATION
+===================================================== -->
+
+<div
+    id="appContainer"
+    style="display:none;"
+>
+
+
+<!-- =====================================================
+     NAVIGATION BAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <span class="logo-icon">
+            🛡️
+        </span>
+
+        <span>
+           FLEX CyberShield
+        </span>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a
+            href="#homeScreen"
+            onclick="goHome(); return false;"
+        >
+            Dashboard
+        </a>
+
+        <a
+            href="#missionSelectionScreen"
+            onclick="showMissionSelection(); return false;"
+        >
+            Missions
+        </a>
+
+        <a
+            href="#leaderboardScreen"
+            onclick="showLeaderboard(); return false;"
+        >
+            Leaderboard
+        </a>
+
+        <a
+            href="#statisticsScreen"
+            onclick="showStatistics(); return false;"
+        >
+            Statistics
+        </a>
+
+        <a
+            href="#achievementsScreen"
+            onclick="showAchievements(); return false;"
+        >
+            Achievements
+        </a>
+
+        <a
+            href="#dailyChallengeScreen"
+            onclick="showDailyChallenge(); return false;"
+        >
+            Daily Challenge
+        </a>
+
+    </nav>
+
+
+    <div class="nav-right">
+
+        <div class="nav-player-info">
+
+            <span id="navXP">
+                XP: 0
+            </span>
+
+            <span id="navLevel">
+                Level 1
+            </span>
+
+        </div>
+
+
+        <button
+            class="profile-nav-btn"
+            onclick="showProfile()"
+            title="Profile"
+        >
+            🛡️
+        </button>
+
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+            title="Logout"
+        >
+            ↪
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<section
+    id="homeScreen"
+    class="screen active"
+>
+
+    <div class="hero-section">
+
+        <div class="hero-content">
+
+            <span class="section-label">
+               FLEX CYBERSECURITY TRAINING
+            </span>
+
+            <h1>
+                Become a
+                <span>Cyber Defender</span>
+            </h1>
+
+            <p>
+                Learn how to recognize online threats,
+                make safer decisions and strengthen
+                your cybersecurity awareness.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <button
+                    class="primary-btn"
+                    onclick="showMissionSelection()"
+                >
+                    🚀 Start Mission
+                </button>
+
+                <button
+                    class="secondary-btn"
+                    onclick="showDailyChallenge()"
+                >
+                    ⚡ Daily Challenge
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-shield">
+
+            <div class="big-shield">
+                🛡️
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PLAYER OVERVIEW -->
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                YOUR PROGRESS
+            </span>
+
+            <h2>
+                Defender Dashboard
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⚡
+            </div>
+
+            <div>
+
+                <span>
+                    Total XP
+                </span>
+
+                <strong id="dashboardXP">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div>
+
+                <span>
+                    Level
+                </span>
+
+                <strong id="dashboardLevel">
+                    1
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <span>
+                    Missions
+                </span>
+
+                <strong id="completedMissions">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🔥
+            </div>
+
+            <div>
+
+                <span>
+                    Best Streak
+                </span>
+
+                <strong id="bestStreak">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- XP PROGRESS -->
+
+    <div class="progress-card">
+
+        <div class="progress-header">
+
+            <div>
+
+                <span>
+                    Current Level
+                </span>
+
+                <strong id="progressLevel">
+                    Level 1
+                </strong>
+
+            </div>
+
+            <span id="xpProgressText">
+                0/100 XP
+            </span>
+
+        </div>
+
+
+        <div class="progress-track">
+
+            <div
+                id="dashboardProgress"
+                class="progress-fill"
+                style="width:0%;"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="quick-actions">
+
+        <button
+            class="action-card"
+            onclick="showProfile()"
+        >
+
+            <span>
+                👤
+            </span>
+
+            <strong>
+                My Profile
+            </strong>
+
+            <small>
+                View your defender profile
+            </small>
+
+        </button>
+
+
+        <button
+            class="action-card"
+            onclick="showStatistics()"
+        >
+
+            <span>
+                📊
+            </span>
+
+            <strong>
+                Statistics
+            </strong>
+
+            <small>
+                Analyze your performance
+            </small>
+
+        </button>
+
+
+        <button
+            class="action-card"
+            onclick="showSecurityCenter()"
+        >
+
+            <span>
+                🔐
+            </span>
+
+            <strong>
+                Security Center
+            </strong>
+
+            <small>
+                Check your security score
+            </small>
+
+        </button>
+
+
+        <button
+            class="action-card"
+            onclick="showLeaderboard()"
+        >
+
+            <span>
+                🏅
+            </span>
+
+            <strong>
+                Leaderboard
+            </strong>
+
+            <small>
+                Compare your XP
+            </small>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     MISSION SELECTION
+===================================================== -->
+
+<section
+    id="missionSelectionScreen"
+    class="screen"
+>
+
+    <div class="page-header">
+
+        <button
+            class="back-btn"
+            onclick="goHome()"
+        >
+            ← Dashboard
+        </button>
+
+        <span class="section-label">
+            TRAINING CENTER
+        </span>
+
+        <h1>
+            Choose Your Mission
+        </h1>
+
+        <p>
+            Select a cybersecurity category
+            and test your knowledge.
+        </p>
+
+    </div>
+
+
+
+    <!-- STREAK -->
+
+    <div class="streak-banner">
+
+        🔥 Current Streak:
+
+        <strong id="selectionStreak">
+            0
+        </strong>
+
+    </div>
+
+
+
+    <!-- DIFFICULTY -->
+
+    <div class="difficulty-filter">
+
+        <button
+            class="difficulty-btn active"
+            data-difficulty="All"
+            onclick="filterDifficulty('All')"
+        >
+            All
+        </button>
+
+        <button
+            class="difficulty-btn"
+            data-difficulty="Beginner"
+            onclick="filterDifficulty('Beginner')"
+        >
+            Beginner
+        </button>
+
+        <button
+            class="difficulty-btn"
+            data-difficulty="Intermediate"
+            onclick="filterDifficulty('Intermediate')"
+        >
+            Intermediate
+        </button>
+
+        <button
+            class="difficulty-btn"
+            data-difficulty="Advanced"
+            onclick="filterDifficulty('Advanced')"
+        >
+            Advanced
+        </button>
+
+    </div>
+
+
+
+    <!-- CATEGORY CARDS -->
+
+    <div class="mission-category-grid">
+
+
+        <!-- PHISHING -->
+
+        <button
+            class="category-card"
+            onclick="startCategoryMission('Phishing')"
+        >
+
+            <span class="category-icon">
+                🎣
+            </span>
+
+            <h3>
+                Phishing
+            </h3>
+
+            <p>
+                Learn to identify suspicious
+                emails and messages.
+            </p>
+
+            <div class="category-progress">
+
+                <span id="phishingProgress">
+                    0/2 completed
+                </span>
+
+                <div class="category-progress-track">
+
+                    <div
+                        id="phishingProgressBar"
+                        class="category-progress-fill"
+                        style="width:0%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- SMS SCAM -->
+
+        <button
+            class="category-card"
+            onclick="startCategoryMission('SMS Scam')"
+        >
+
+            <span class="category-icon">
+                📱
+            </span>
+
+            <h3>
+                SMS Scam
+            </h3>
+
+            <p>
+                Spot suspicious messages,
+                fake prizes and delivery scams.
+            </p>
+
+            <div class="category-progress">
+
+                <span id="smsProgress">
+                    0/2 completed
+                </span>
+
+                <div class="category-progress-track">
+
+                    <div
+                        id="smsProgressBar"
+                        class="category-progress-fill"
+                        style="width:0%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- PASSWORD -->
+
+        <button
+            class="category-card"
+            onclick="startCategoryMission('Password Security')"
+        >
+
+            <span class="category-icon">
+                🔐
+            </span>
+
+            <h3>
+                Password Security
+            </h3>
+
+            <p>
+                Build stronger password habits
+                and protect your accounts.
+            </p>
+
+            <div class="category-progress">
+
+                <span id="passwordProgress">
+                    0/2 completed
+                </span>
+
+                <div class="category-progress-track">
+
+                    <div
+                        id="passwordProgressBar"
+                        class="category-progress-fill"
+                        style="width:0%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- SOCIAL ENGINEERING -->
+
+        <button
+            class="category-card"
+            onclick="startCategoryMission('Social Engineering')"
+        >
+
+            <span class="category-icon">
+                🧠
+            </span>
+
+            <h3>
+                Social Engineering
+            </h3>
+
+            <p>
+                Recognize pressure tactics,
+                manipulation and suspicious requests.
+            </p>
+
+            <div class="category-progress">
+
+                <span id="socialProgress">
+                    0/2 completed
+                </span>
+
+                <div class="category-progress-track">
+
+                    <div
+                        id="socialProgressBar"
+                        class="category-progress-fill"
+                        style="width:0%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- WEB SAFETY -->
+
+        <button
+            class="category-card"
+            onclick="startCategoryMission('Web Safety')"
+        >
+
+            <span class="category-icon">
+                🌐
+            </span>
+
+            <h3>
+                Web Safety
+            </h3>
+
+            <p>
+                Learn how to identify suspicious
+                websites and fake login pages.
+            </p>
+
+            <div class="category-progress">
+
+                <span id="webProgress">
+                    0/2 completed
+                </span>
+
+                <div class="category-progress-track">
+
+                    <div
+                        id="webProgressBar"
+                        class="category-progress-fill"
+                        style="width:0%;"
+                    ></div>
+
+                </div>
+
+            </div>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ACTIVE MISSION
+===================================================== -->
+
+<section
+    id="missionScreen"
+    class="screen"
+>
+
+    <div class="mission-top">
+
+        <button
+            class="back-btn"
+            onclick="showMissionSelection()"
+        >
+            ← Missions
+        </button>
+
+        <span id="scenarioNumber">
+            Mission 1
+        </span>
+
+    </div>
+
+
+
+    <div class="mission-header">
+
+        <span
+            id="category"
+            class="mission-category"
+        >
+            Phishing
+        </span>
+
+        <span
+            id="difficulty"
+            class="mission-difficulty"
+        >
+            Beginner
+        </span>
+
+
+        <h1 id="scenarioTitle">
+            Mission Title
+        </h1>
+
+
+        <div class="mission-progress-header">
+
+            <span id="missionProgressText">
+                1 / 2
+            </span>
+
+        </div>
+
+
+        <div class="progress-track">
+
+            <div
+                id="progressBar"
+                class="progress-fill"
+                style="width:50%;"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SCENARIO -->
+
+    <div class="scenario-card">
+
+        <div class="scenario-icon">
+            🛡️
+        </div>
+
+        <div>
+
+            <span class="section-label">
+                SCENARIO
+            </span>
+
+            <p id="scenarioContent">
+                Scenario content will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUESTION -->
+
+    <div class="question-card">
+
+        <span class="section-label">
+            YOUR DECISION
+        </span>
+
+        <h2 id="question">
+            What should you do?
+        </h2>
+
+
+        <div
+            id="options"
+            class="options-grid"
+        ></div>
+
+
+        <!-- FEEDBACK -->
+
+        <div
+            id="feedback"
+            class="feedback"
+            style="display:none;"
+        >
+
+            <h3 id="feedbackTitle">
+                Feedback
+            </h3>
+
+            <p id="feedbackText">
+                Explanation
+            </p>
+
+        </div>
+
+
+        <button
+            id="nextButton"
+            class="primary-btn next-btn"
+            onclick="nextMission()"
+            style="display:none;"
+        >
+            Next Mission →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ACHIEVEMENTS
+===================================================== -->
+
+<section
+    id="achievementsScreen"
+    class="screen"
+>
+
+    <div class="page-header">
+
+        <button
+            class="back-btn"
+            onclick="goHome()"
+        >
+            ← Dashboard
+        </button>
+
+        <span class="section-label">
+            REWARDS
+        </span>
+
+        <h1>
+            Achievements
+        </h1>
+
+        <p>
+            Unlock badges by improving your
+            cybersecurity skills.
+        </p>
+
+    </div>
+
+
+    <div class="achievement-grid">
+
+
+        <div
+            id="badge-phishing"
+            class="achievement-card locked"
+        >
+
+            <span class="achievement-icon">
+                🎣
+            </span>
+
+            <h3>
+                Phishing Defender
+            </h3>
+
+            <p>
+                Complete the Phishing missions.
+            </p>
+
+        </div>
+
+
+        <div
+            id="badge-scam"
+            class="achievement-card locked"
+        >
+
+            <span class="achievement-icon">
+                📱
+            </span>
+
+            <h3>
+                Scam Spotter
+            </h3>
+
+            <p>
+                Complete the SMS Scam missions.
+            </p>
+
+        </div>
+
+
+        <div
+            id="badge-password"
+            class="achievement-card locked"
+        >
+
+            <span class="achievement-icon">
+                🔐
+            </span>
+
+            <h3>
+                Password Guardian
+            </h3>
+
+            <p>
+                Complete the Password Security missions.
+            </p>
+
+        </div>
+
+
+        <div
+            id="badge-web"
+            class="achievement-card locked"
+        >
+
+            <span class="achievement-icon">
+                🌐
+            </span>
+
+            <h3>
+                Web Watcher
+            </h3>
+
+            <p>
+                Complete the Web Safety missions.
+            </p>
+
+        </div>
+
+
+        <div
+            id="badge-defender"
+            class="achievement-card locked"
+        >
+
+            <span class="achievement-icon">
+                🛡️
+            </span>
+
+            <h3>
+                Cyber Defender
+            </h3>
+
+            <p>
+                Complete cybersecurity missions.
+            </p>
+
+        </div>
+
+
+        <div
+            id="badge-expert"
+            class="achievement-card locked"
+        >
+
+            <span class="achievement-icon">
+                🏆
+            </span>
+
+            <h3>
+                CyberShield Expert
+            </h3>
+
+            <p>
+                Reach Level 5.
+            </p>
+
+        </div>
+
+
+        <div
+            id="badge-streak"
+            class="achievement-card locked"
+        >
+
+            <span class="achievement-icon">
+                🔥
+            </span>
+
+            <h3>
+                Streak Master
+            </h3>
+
+            <p>
+                Reach a 5-answer streak.
+            </p>
+
+        </div>
+
+
+        <div
+            id="badge-daily"
+            class="achievement-card locked"
+        >
+
+            <span class="achievement-icon">
+                📅
+            </span>
+
+            <h3>
+                Daily Defender
+            </h3>
+
+            <p>
+                Complete a Daily Challenge.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROFILE
+===================================================== -->
+
+<section
+    id="profileScreen"
+    class="screen"
+>
+
+    <div class="page-header">
+
+        <button
+            class="back-btn"
+            onclick="goHome()"
+        >
+            ← Dashboard
+        </button>
+
+        <span class="section-label">
+            DEFENDER PROFILE
+        </span>
+
+        <h1>
+            My Profile
+        </h1>
+
+    </div>
+
+
+    <div class="profile-card">
+
+        <div
+            id="profileAvatar"
+            class="profile-avatar"
+        >
+            🛡️
+        </div>
+
+
+        <h2 id="profileDisplayName">
+            Defender
+        </h2>
+
+
+        <p id="profileUsername">
+            @username
+        </p>
+
+
+        <div class="profile-stats">
+
+            <div>
+
+                <strong id="profileLevel">
+                    1
+                </strong>
+
+                <span>
+                    Level
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong id="profileXP">
+                    0
+                </strong>
+
+                <span>
+                    XP
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong id="profileAccuracy">
+                    0%
+                </strong>
+
+                <span>
+                    Accuracy
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong id="profileMissions">
+                    0
+                </strong>
+
+                <span>
+                    Missions
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong id="profileBestStreak">
+                    0
+                </strong>
+
+                <span>
+                    Best Streak
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-badges-section">
+
+            <h3>
+                Badges
+            </h3>
+
+            <div id="profileBadges">
+                No badges unlocked yet.
+            </div>
+
+        </div>
+
+
+        <button
+            class="secondary-btn"
+            onclick="showSettings()"
+        >
+            ⚙️ Account Settings
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SETTINGS
+===================================================== -->
+
+<section
+    id="settingsScreen"
+    class="screen"
+>
+
+    <div class="page-header">
+
+        <button
+            class="back-btn"
+            onclick="showProfile()"
+        >
+            ← Profile
+        </button>
+
+        <span class="section-label">
+            ACCOUNT
+        </span>
+
+        <h1>
+            Settings
+        </h1>
+
+    </div>
+
+
+    <div class="settings-card">
+
+        <h2>
+            Profile Settings
+        </h2>
+
+
+        <div class="input-group">
+
+            <label for="settingsDisplayName">
+                Display Name
+            </label>
+
+            <input
+                type="text"
+                id="settingsDisplayName"
+                placeholder="Display name"
+            >
+
+        </div>
+
+
+        <h3>
+            Choose Avatar
+        </h3>
+
+
+        <div
+            id="avatarOptions"
+            class="avatar-options"
+        ></div>
+
+
+        <p
+            id="settingsMessage"
+            class="settings-message"
+        ></p>
+
+
+        <button
+            class="primary-btn"
+            onclick="saveSettings()"
+        >
+            💾 Save Settings
+        </button>
+
+
+        <div class="danger-zone">
+
+            <h3>
+                Reset Progress
+            </h3>
+
+            <p>
+                This will reset your XP,
+                missions, badges and statistics.
+            </p>
+
+            <button
+                class="danger-btn"
+                onclick="resetProgress()"
+            >
+                Reset My Progress
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     LEADERBOARD
+===================================================== -->
+
+<section
+    id="leaderboardScreen"
+    class="screen"
+>
+
+    <div class="page-header">
+
+        <button
+            class="back-btn"
+            onclick="goHome()"
+        >
+            ← Dashboard
+        </button>
+
+        <span class="section-label">
+            COMPETITION
+        </span>
+
+        <h1>
+            CyberShield Leaderboard
+        </h1>
+
+        <p>
+            See how defenders rank by XP.
+        </p>
+
+    </div>
+
+
+    <div class="top-three">
+
+        <div class="top-player second">
+
+            <span class="rank-icon">
+                🥈
+            </span>
+
+            <strong id="secondPlayer">
+                —
+            </strong>
+
+        </div>
+
+
+        <div class="top-player first">
+
+            <span class="rank-icon">
+                🥇
+            </span>
+
+            <strong id="firstPlayer">
+                —
+            </strong>
+
+        </div>
+
+
+        <div class="top-player third">
+
+            <span class="rank-icon">
+                🥉
+            </span>
+
+            <strong id="thirdPlayer">
+                —
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="leaderboardList"
+        class="leaderboard-list"
+    ></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     STATISTICS
+===================================================== -->
+
+<section
+    id="statisticsScreen"
+    class="screen"
+>
+
+    <div class="page-header">
+
+        <button
+            class="back-btn"
+            onclick="goHome()"
+        >
+            ← Dashboard
+        </button>
+
+        <span class="section-label">
+            PERFORMANCE
+        </span>
+
+        <h1>
+            Statistics
+        </h1>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <span>
+                    Accuracy
+                </span>
+
+                <strong id="statisticsAccuracy">
+                    0%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <span>
+                    Correct
+                </span>
+
+                <strong id="statisticsCorrect">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✕
+            </div>
+
+            <div>
+
+                <span>
+                    Wrong
+                </span>
+
+                <strong id="statisticsWrong">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⚡
+            </div>
+
+            <div>
+
+                <span>
+                    XP
+                </span>
+
+                <strong id="statisticsXP">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="statistics-panel">
+
+        <h2>
+            Category Progress
+        </h2>
+
+        <div id="categoryStatistics"></div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DAILY CHALLENGE
+===================================================== -->
+
+<section
+    id="dailyChallengeScreen"
+    class="screen"
+>
+
+    <div class="page-header">
+
+        <button
+            class="back-btn"
+            onclick="goHome()"
+        >
+            ← Dashboard
+        </button>
+
+        <span class="section-label">
+            DAILY TRAINING
+        </span>
+
+        <h1>
+            Daily Challenge
+        </h1>
+
+        <p>
+            Complete today's challenge
+            and earn bonus XP.
+        </p>
+
+    </div>
+
+
+    <div class="daily-challenge-card">
+
+        <span
+            id="dailyChallengeCategory"
+            class="mission-category"
+        >
+            Phishing
+        </span>
+
+
+        <h2 id="dailyChallengeTitle">
+            Daily Challenge
+        </h2>
+
+
+        <p id="dailyChallengeText">
+            Challenge loading...
+        </p>
+
+
+        <div
+            id="dailyChallengeOptions"
+            class="options-grid"
+        ></div>
+
+
+        <div
+            id="dailyChallengeFeedback"
+            class="feedback"
+            style="display:none;"
+        >
+
+            <h3 id="dailyFeedbackTitle">
+                Feedback
+            </h3>
+
+            <p id="dailyFeedbackText">
+                Explanation
+            </p>
+
+        </div>
+
+
+        <button
+            id="dailyChallengeButton"
+            class="primary-btn"
+            style="display:none;"
+        >
+            Daily Challenge Complete
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SECURITY CENTER
+===================================================== -->
+
+<section
+    id="securityCenterScreen"
+    class="screen"
+>
+
+    <div class="page-header">
+
+        <button
+            class="back-btn"
+            onclick="goHome()"
+        >
+            ← Dashboard
+        </button>
+
+        <span class="section-label">
+            SECURITY ANALYSIS
+        </span>
+
+        <h1>
+            Security Center
+        </h1>
+
+        <p>
+            Review your CyberShield security performance.
+        </p>
+
+    </div>
+
+
+    <div class="security-score-card">
+
+        <div class="security-score-circle">
+
+            <strong id="securityScore">
+                0
+            </strong>
+
+            <span>
+                /100
+            </span>
+
+        </div>
+
+
+        <h2 id="securityRating">
+            Beginner
+        </h2>
+
+
+        <div class="security-progress">
+
+            <div
+                id="securityScoreBar"
+                class="security-progress-fill"
+                style="width:0%;"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <span>
+                    Accuracy
+                </span>
+
+                <strong id="securityAccuracy">
+                    0%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎮
+            </div>
+
+            <div>
+
+                <span>
+                    Missions
+                </span>
+
+                <strong id="securityMissions">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🏅
+            </div>
+
+            <div>
+
+                <span>
+                    Badges
+                </span>
+
+                <strong id="securityBadges">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🔥
+            </div>
+
+            <div>
+
+                <span>
+                    Best Streak
+                </span>
+
+                <strong id="securityStreak">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RESULTS
+===================================================== -->
+
+<section
+    id="resultScreen"
+    class="screen"
+>
+
+    <div class="result-card">
+
+        <div class="result-icon">
+            🛡️
+        </div>
+
+
+        <span class="section-label">
+            MISSION COMPLETE
+        </span>
+
+
+        <h1>
+            Mission Results
+        </h1>
+
+
+        <div class="final-score">
+
+            <span>
+                Your Score
+            </span>
+
+            <strong id="finalScore">
+                0
+            </strong>
+
+            <small>
+                points
+            </small>
+
+        </div>
+
+
+        <div class="performance-container">
+
+            <div class="performance-header">
+
+                <span>
+                    Performance
+                </span>
+
+                <span>
+                    <span id="correctAnswers">
+                        0
+                    </span>
+                    /
+                    <span id="wrongAnswers">
+                        0
+                    </span>
+                </span>
+
+            </div>
+
+
+            <div class="performance-track">
+
+                <div
+                    id="performanceBar"
+                    class="performance-fill"
+                    style="width:0%;"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <p id="performanceText">
+            Keep learning!
+        </p>
+
+
+        <div class="result-stats">
+
+            <div>
+
+                <span>
+                    ✓ Correct
+                </span>
+
+                <strong id="correctAnswers">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    ✕ Wrong
+                </span>
+
+                <strong id="wrongAnswers">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    ⚡ XP Earned
+                </span>
+
+                <strong id="earnedXP">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="result-buttons">
+
+            <button
+                class="primary-btn"
+                onclick="retryMission()"
+            >
+                🔄 Retry Mission
+            </button>
+
+
+            <button
+                class="secondary-btn"
+                onclick="showMissionSelection()"
+            >
+                🎯 More Missions
+            </button>
+
+
+            <button
+                class="secondary-btn"
+                onclick="goHome()"
+            >
+                🏠 Dashboard
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-logo">
+        🛡️ CyberShield
+    </div>
+
+    <p>
+        Learn. Simulate. Decide. Defend.
+    </p>
+
+    <span>
+        © 2026 CyberShield
+    </span>
+
+</footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
